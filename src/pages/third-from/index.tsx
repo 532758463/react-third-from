@@ -180,7 +180,7 @@ const ThirdForm = () => {
         <Input.TextArea />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
-        <Button type="primary" htmlType="submit">
+        <Button className="bg-blue-400" type="primary" htmlType="submit">
           提交
         </Button>
       </Form.Item>
