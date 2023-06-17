@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>单例模式弹框</title>
+</head>
+<style>
+  #modal {
+    height: 200px;
+    width: 200px;
+    line-height: 200px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    text-align: center;
+  }
+</style>
+
+<body>
+  <button id='open'>打开弹框</button>
+  <button id='close'>关闭弹框</button>
+</body>
+<script>
+  // 核心逻辑，这里采用了ES6类思路来实现单例模式
+  class Modal {
+    static getInstance() {
+      if (!Modal.instance) {
+        Modal.instance = new Modal();
+        Modal.instance.createInstance();
+      }
+      return Modal.instance;
+    }
+    createInstance() {
+      this.div = document.createElement('div');
+      this.div.id = 'modal';
+      this.div.innerHTML = '全局模态框';
+      this.div.style.display = 'none';
+      document.body.appendChild(this.div);
+    }
+    open() {
+      this.div.style.display = 'block';
+    }
+    close() {
+      this.div.style.display = 'none';
+    }
+  }
+
+  // 点击打开按钮展示模态框
+  document.getElementById('open').addEventListener('click', function () {
+    // 未点击则不创建modal实例，避免不必要的内存占用;此处不用 new Modal 的形式调用也可以，和 Storage 同理
+    const modal = Modal.getInstance();
+    modal.open()
+  })
+
+  // 点击关闭按钮隐藏模态框
+  document.getElementById('close').addEventListener('click', function () {
+    const modal = Modal.getInstance();
+    modal.close()
+  })
+
+</script>
+
+</html>
