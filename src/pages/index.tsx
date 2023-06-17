@@ -7,7 +7,7 @@ export const Navigation: React.FC = () => {
     <div className="flex justify-center">
       {routes.map((route) => (
         <NavLink
-          className="mr-20 border-b-2 border-transparent hover:border-blue-500 border-solid"
+          className="mr-20 border-b-2 border-transparent border-solid hover:border-blue-500"
           key={route.path}
           to={route.path}
         >
