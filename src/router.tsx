@@ -1,10 +1,9 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import type { RouteProps } from 'react-router-dom';
 import Navigation from '@pages/index';
 import Grid from '@pages/grid';
 import ThirdForm from '@pages/third-from';
 
-interface IRoute extends RouteProps {
+interface IRoute {
   path: string;
   name: string;
   element?: React.ReactNode | null;
