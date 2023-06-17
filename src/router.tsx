@@ -7,6 +7,7 @@ import ThirdForm from '@pages/third-from';
 interface IRoute extends RouteProps {
   path: string;
   name: string;
+  element?: React.ReactNode | null;
 }
 
 export const routes: IRoute[] = [
