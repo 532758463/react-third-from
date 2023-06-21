@@ -101,7 +101,7 @@ const ThirdForm = () => {
                     // 0: 回退上节点， 1： 回退发起者 2：指定节点
                     backDealType: 1,
                     // 指定节点时必传
-                    targetNodeId: id,
+                    targetNodeId: null,
                     // 0: 提交给我 1:流程重走
                     afterType: 0,
                     bpmOpinionDto: {
