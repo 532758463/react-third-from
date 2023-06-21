@@ -45,12 +45,12 @@ const ThirdForm = () => {
     const fn = async (e: any) => {
       // 判断是否来自外框消息
       if (e.data.isFromBPM) {
+        const values = e.data.needValidate
+          ? await form.validateFields()
+          : form.getFieldsValue();
         switch (e.data?.messageType) {
           case 'GET_FORM_DATA':
             // eslint-disable-next-line no-case-declarations
-            const values = e.data.needValidate
-              ? await form.validateFields()
-              : form.getFieldsValue();
             values.formRecordId = new Date().getTime();
             console.log('来自主页面得消息', e);
             console.log(values);
