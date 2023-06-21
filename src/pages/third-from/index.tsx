@@ -179,11 +179,6 @@ const ThirdForm = () => {
       <Form.Item name={['user', 'introduction']} label="介绍">
         <Input.TextArea />
       </Form.Item>
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
-        <Button className="bg-blue-400" type="primary" htmlType="submit">
-          提交
-        </Button>
-      </Form.Item>
     </Form>
   );
 };
