@@ -60,7 +60,8 @@ const ThirdForm = () => {
                   success: true, //表单数据验证成功或不需要验证时传true，否则传false
                   submitType: e.data.submitType, //将此字段值回传
                   formData: values, //表单数据
-                  messageType: 'GET_ACTION_INFO' //消息类型
+                  messageType: 'GET_ACTION_INFO', //消息类型
+                  url: e?.data?.url
                 },
                 e.data.url //父页面地址
               );
@@ -73,6 +74,7 @@ const ThirdForm = () => {
                 submitType: e.data.submitType, //将此字段值回传
                 formData: values, //表单数据
                 messageType: 'GET_FORM_DATA', //消息类型
+                url: e?.data?.url,
                 submitParams: {
                   // 0: 回退上节点， 1： 回退发起者 2：指定节点
                   backDealType: 0,
