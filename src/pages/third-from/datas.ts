@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 /**
  * 按钮权限
  */
-
 export enum PERMISSION_ENUM {
   /**
    * 发送
@@ -140,85 +140,85 @@ export const jobInfo = [
   }
 ];
 
-export const userInfo = [
-  {
-    label: '姓名',
-    name: 'name',
-    required: true
-  },
-  {
-    label: '年龄',
-    name: 'age',
-    required: true,
-    type: 'number'
-  },
-  {
-    label: '性别',
-    name: 'gender',
-    required: false,
-    type: 'select',
-    options: [
-      {
-        name: '男',
-        value: 'boy'
-      },
-      {
-        name: '女',
-        value: 'girl'
-      }
-    ]
-  },
-  {
-    label: '邮箱',
-    name: 'email',
-    required: false,
-    type: 'email'
-  },
-  {
-    label: '电话',
-    name: 'phone',
-    required: true,
-    type: 'number'
-  },
-  {
-    label: '身份证号',
-    name: 'cardCode',
-    required: true
-  },
-  {
-    label: '住址',
-    name: 'place'
-  },
-  {
-    label: '学历',
-    name: 'degree',
-    type:'select',
-    required: true,
-    options: [
-      {
-        name: '大专',
-        value: 'dazhuan'
-      },
-      {
-        name: '本科',
-        value: 'undergraduate'
-      },
-      {
-        name: '硕士',
-        value: 'master'
-      },
-      {
-        name: '博士',
-        value: 'dr'
-      }
-    ]
-  },
-  {
-    label: '毕业院校',
-    name: 'school',
-    required: true
-  }
-];
+export const getUserInfo = (required: boolean) => {
+  return [
+    {
+      label: '姓名',
+      name: 'name',
+      required
+    },
+    {
+      label: '年龄',
+      name: 'age',
+      required,
+      type: 'number'
+    },
+    {
+      label: '性别',
+      name: 'gender',
+      type: 'select',
+      options: [
+        {
+          name: '男',
+          value: 'boy'
+        },
+        {
+          name: '女',
+          value: 'girl'
+        }
+      ]
+    },
+    {
+      label: '邮箱',
+      name: 'email',
+      type: 'email'
+    },
+    {
+      label: '电话',
+      name: 'phone',
+      required,
+      type: 'number'
+    },
+    {
+      label: '身份证号',
+      name: 'cardCode',
+      required
+    },
+    {
+      label: '住址',
+      name: 'place'
+    },
+    {
+      label: '学历',
+      name: 'degree',
+      type: 'select',
+      required,
+      options: [
+        {
+          name: '大专',
+          value: 'dazhuan'
+        },
+        {
+          name: '本科',
+          value: 'undergraduate'
+        },
+        {
+          name: '硕士',
+          value: 'master'
+        },
+        {
+          name: '博士',
+          value: 'dr'
+        }
+      ]
+    },
+    {
+      label: '毕业院校',
+      name: 'school',
+      required
+    }
+  ];
+};
 
 export const workInfo = [
   {

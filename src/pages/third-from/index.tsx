@@ -1,7 +1,7 @@
 import { DatePicker, Form, Input, Select } from 'antd';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'antd/lib/form/Form';
-import { jobInfo, userInfo, PERMISSION_ENUM, workInfo } from './datas';
+import { jobInfo, getUserInfo, PERMISSION_ENUM, workInfo } from './datas';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -36,6 +36,7 @@ const ThirdForm = () => {
   const backInfoRef = useRef();
   const searchUrl = new URLSearchParams(location.search);
   const formRecordId = searchUrl.get('formRecordId') || new Date().getTime();
+  const isStart = searchUrl.get('isStart');
 
   function svaeFormData() {
     const values = form.getFieldsValue();
@@ -245,7 +246,7 @@ const ThirdForm = () => {
           人员信息
         </div>
         <div className="grid grid-cols-3 gap-4 py-8 mx-20">
-          {userInfo.map((v) => (
+          {getUserInfo(!!isStart).map((v) => (
             <Form.Item
               key={v.name}
               name={['userInfo', v.name]}
