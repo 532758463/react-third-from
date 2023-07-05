@@ -21,12 +21,7 @@ const SaveActions = [
   PERMISSION_ENUM.SEND,
   PERMISSION_ENUM.TEMPORARY
 ];
-const datas2 = JSON.stringify({
-  jobInfo: { depart: '11', job: '1212', site: '121', teacher: '1221' },
-  userInfo: {
-    endDate: ['2023-07-13T13:52:06.677Z', '2023-07-18T13:52:06.677Z']
-  }
-});
+
 
 const validateMessages = {
   required: '${label}必填!',
@@ -65,7 +60,6 @@ const ThirdForm = () => {
 
   useEffect(() => {
     const values = localStorage.getItem(`${formRecordId}`);
-    form.setFieldsValue(JSON.parse(datas2));
     if (values) {
       try {
         form.setFieldsValue(JSON.parse(values));
