@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select } from 'antd';
+import {  Form, Input, Select } from 'antd';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'antd/lib/form/Form';
 
@@ -91,7 +91,7 @@ const ThirdForm = () => {
             if (e.data.submitType === 'BACK') {
               // 获取回退数据
               backInfoRef.current = e.data.info;
-              const id = Object.keys(e.data.info || {})[0];
+              // const id = Object.keys(e.data.info || {})[0];
               // 将表单内容回传给父页面消息
               top?.postMessage(
                 {
