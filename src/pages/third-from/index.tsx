@@ -44,10 +44,14 @@ const ThirdForm = () => {
 
   useEffect(() => {
     const values = localStorage.getItem(`${formRecordId}`);
-    if(values) {
-      form.setFieldsValue(values);
+    if (values) {
+      try {
+        form.setFieldsValue(JSON.parse(values));
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [formRecordId]);
+  }, [formRecordId, form]);
 
   useEffect(() => {
     top?.postMessage({ hasListener: true }, '*');
@@ -122,7 +126,7 @@ const ThirdForm = () => {
             if (e.data.submitType === 'BACK') {
               // 获取回退数据
               backInfoRef.current = e.data.info;
-              const id = Object.keys(e.data.info || {})[0];
+              // const id = Object.keys(e.data.info || {})[0];
               // 将表单内容回传给父页面消息
               top?.postMessage(
                 {
@@ -181,7 +185,9 @@ const ThirdForm = () => {
         return (
           <Select showSearch placeholder="请选择" className="text-left">
             {v?.options?.map((i: any) => (
-              <Option value={i.value}>{i.name}</Option>
+              <Option key={i.value} value={i.value}>
+                {i.name}
+              </Option>
             ))}
           </Select>
         );
@@ -218,12 +224,13 @@ const ThirdForm = () => {
     >
       <h1 className="text-lg font-bold">入职信息</h1>
       <div>
-        <div className="bg-blue-300 mx-20 text-start text-black px-2">
+        <div className="px-2 mx-20 text-black bg-blue-300 text-start">
           岗位信息
         </div>
-        <div className="grid grid-cols-3 gap-4 mx-20 py-8">
+        <div className="grid grid-cols-3 gap-4 py-8 mx-20">
           {jobInfo.map((v) => (
             <Form.Item
+              key={v.name}
               name={['jobInfo', v.name]}
               label={v.label}
               rules={[{ required: v.required }]}
@@ -234,12 +241,13 @@ const ThirdForm = () => {
         </div>
       </div>
       <div>
-        <div className="bg-blue-300 mx-20 text-start text-black px-2">
+        <div className="px-2 mx-20 text-black bg-blue-300 text-start">
           人员信息
         </div>
-        <div className="grid grid-cols-3 gap-4 mx-20 py-8">
+        <div className="grid grid-cols-3 gap-4 py-8 mx-20">
           {userInfo.map((v) => (
             <Form.Item
+              key={v.name}
               name={['userInfo', v.name]}
               label={v.label}
               rules={[{ required: v.required }]}
@@ -250,12 +258,13 @@ const ThirdForm = () => {
         </div>
       </div>
       <div>
-        <div className="bg-blue-300 mx-20 text-start text-black px-2">
+        <div className="px-2 mx-20 text-black bg-blue-300 text-start">
           入职信息
         </div>
-        <div className="grid grid-cols-3 mx-20 py-8">
+        <div className="grid grid-cols-3 py-8 mx-20">
           {workInfo.map((v) => (
             <Form.Item
+              key={v.name}
               name={['userInfo', v.name]}
               label={v.label}
               rules={[{ required: v.required }]}
