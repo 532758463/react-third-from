@@ -2,6 +2,8 @@ import { DatePicker, Form, Input, Select } from 'antd';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'antd/lib/form/Form';
 import { jobInfo, getUserInfo, PERMISSION_ENUM, workInfo } from './datas';
+import { getValidUrlParamValue } from '@src/utils/getValidUrlParamValue';
+import dayjs from 'dayjs';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -19,6 +21,12 @@ const SaveActions = [
   PERMISSION_ENUM.SEND,
   PERMISSION_ENUM.TEMPORARY
 ];
+const datas2 = JSON.stringify({
+  jobInfo: { depart: '11', job: '1212', site: '121', teacher: '1221' },
+  userInfo: {
+    endDate: ['2023-07-13T13:52:06.677Z', '2023-07-18T13:52:06.677Z']
+  }
+});
 
 const validateMessages = {
   required: '${label}必填!',
@@ -31,11 +39,23 @@ const validateMessages = {
   }
 };
 
+const RangeDate = (props: any) => {
+  const newVal = props?.value?.map((v: string) => dayjs(v));
+  return <RangePicker {...props} value={newVal} />;
+};
+
+const DateTime = (props: any) => {
+  const val = props?.value;
+  const newVal = val && dayjs(val);
+  return <DatePicker {...props} value={newVal} />;
+};
+
 const ThirdForm = () => {
   const [form] = useForm();
   const backInfoRef = useRef();
   const searchUrl = new URLSearchParams(location.search);
-  const formRecordId = searchUrl.get('formRecordId') || new Date().getTime();
+  const dataId = searchUrl.get('formRecordId') || '';
+  const formRecordId = getValidUrlParamValue(dataId) || new Date().getTime();
   const isStart = searchUrl.get('isStart');
 
   function svaeFormData() {
@@ -45,6 +65,7 @@ const ThirdForm = () => {
 
   useEffect(() => {
     const values = localStorage.getItem(`${formRecordId}`);
+    form.setFieldsValue(JSON.parse(datas2));
     if (values) {
       try {
         form.setFieldsValue(JSON.parse(values));
@@ -194,7 +215,7 @@ const ThirdForm = () => {
         );
       case 'DateTime':
         return (
-          <DatePicker
+          <DateTime
             style={{
               width: '100%'
             }}
@@ -203,7 +224,7 @@ const ThirdForm = () => {
         );
       case 'RangePicker':
         return (
-          <RangePicker
+          <RangeDate
             style={{
               width: '100%'
             }}
@@ -213,6 +234,7 @@ const ThirdForm = () => {
         return <Input />;
     }
   }
+
   return (
     <Form
       {...layout}
@@ -262,7 +284,7 @@ const ThirdForm = () => {
         <div className="px-2 mx-20 text-black bg-blue-300 text-start">
           入职信息
         </div>
-        <div className="grid grid-cols-3 py-8 mx-20">
+        <div className="grid grid-cols-3 gap-4 py-8 mx-20">
           {workInfo.map((v) => (
             <Form.Item
               key={v.name}
