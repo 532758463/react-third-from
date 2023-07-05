@@ -246,7 +246,7 @@ const ThirdForm = () => {
           人员信息
         </div>
         <div className="grid grid-cols-3 gap-4 py-8 mx-20">
-          {getUserInfo(!!isStart).map((v) => (
+          {getUserInfo(!isStart).map((v) => (
             <Form.Item
               key={v.name}
               name={['userInfo', v.name]}
