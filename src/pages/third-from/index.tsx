@@ -22,7 +22,6 @@ const SaveActions = [
   PERMISSION_ENUM.TEMPORARY
 ];
 
-
 const validateMessages = {
   required: '${label}必填!',
   types: {
