@@ -1,4 +1,4 @@
-import {  Form, Input, Select } from 'antd';
+import { Form, Input, Select } from 'antd';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'antd/lib/form/Form';
 
