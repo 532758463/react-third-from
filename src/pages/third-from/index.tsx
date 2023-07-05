@@ -40,7 +40,7 @@ const ThirdForm = () => {
 
   function svaeFormData() {
     const values = form.getFieldsValue();
-    localStorage.setItem(`${formRecordId}`, values);
+    localStorage.setItem(`${formRecordId}`, JSON.stringify(values));
   }
 
   useEffect(() => {
