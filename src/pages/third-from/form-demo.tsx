@@ -1,24 +1,12 @@
-import { DatePicker, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'antd/lib/form/Form';
-import { jobInfo, userInfo, PERMISSION_ENUM, workInfo } from './datas';
 
 const { Option } = Select;
-const { RangePicker } = DatePicker;
 const layout = {
-  // labelCol: { span: 8 },
-  // wrapperCol: { span: 16 }
+  labelCol: { span: 4 },
+  wrapperCol: { span: 16 }
 };
-
-const SaveActions = [
-  PERMISSION_ENUM.AGREE,
-  PERMISSION_ENUM.BACK,
-  PERMISSION_ENUM.DRAFT,
-  PERMISSION_ENUM.DRAFT_HANDLE,
-  PERMISSION_ENUM.SUBMIT,
-  PERMISSION_ENUM.SEND,
-  PERMISSION_ENUM.TEMPORARY
-];
 
 const validateMessages = {
   required: '${label}必填!',
@@ -30,25 +18,9 @@ const validateMessages = {
     range: '${label} must be between ${min} and ${max}'
   }
 };
-
 const ThirdForm = () => {
   const [form] = useForm();
   const backInfoRef = useRef();
-  const searchUrl = new URLSearchParams(location.search);
-  const formRecordId = searchUrl.get('formRecordId') || new Date().getTime();
-
-  function svaeFormData() {
-    const values = form.getFieldsValue();
-    localStorage.setItem(`${formRecordId}`, values);
-  }
-
-  useEffect(() => {
-    const values = localStorage.getItem(`${formRecordId}`);
-    if(values) {
-      form.setFieldsValue(values);
-    }
-  }, [formRecordId]);
-
   useEffect(() => {
     top?.postMessage({ hasListener: true }, '*');
     top?.postMessage(
@@ -79,12 +51,9 @@ const ThirdForm = () => {
         switch (e.data?.messageType) {
           case 'GET_FORM_DATA':
             // eslint-disable-next-line no-case-declarations
-            values.formRecordId = formRecordId;
+            values.formRecordId = new Date().getTime();
             console.log('来自主页面得消息', e);
             console.log(values);
-            if (SaveActions.includes(e.data.submitType)) {
-              svaeFormData();
-            }
             if (e.data.submitType === 'BACK') {
               top?.postMessage(
                 {
@@ -172,40 +141,6 @@ const ThirdForm = () => {
   const onFinish = (values: any) => {
     console.log(values);
   };
-
-  function getControl(v: any) {
-    switch (v?.type) {
-      case 'number':
-        return <Input type="number" />;
-      case 'select':
-        return (
-          <Select showSearch placeholder="请选择" className="text-left">
-            {v?.options?.map((i: any) => (
-              <Option value={i.value}>{i.name}</Option>
-            ))}
-          </Select>
-        );
-      case 'DateTime':
-        return (
-          <DatePicker
-            style={{
-              width: '100%'
-            }}
-            placeholder="请输入日期"
-          />
-        );
-      case 'RangePicker':
-        return (
-          <RangePicker
-            style={{
-              width: '100%'
-            }}
-          />
-        );
-      default:
-        return <Input />;
-    }
-  }
   return (
     <Form
       {...layout}
@@ -213,58 +148,39 @@ const ThirdForm = () => {
       autoComplete="off"
       form={form}
       onFinish={onFinish}
-      className="relative top-10"
+      className="relative top-20"
       validateMessages={validateMessages}
     >
-      <h1 className="text-lg font-bold">入职信息</h1>
-      <div>
-        <div className="bg-blue-300 mx-20 text-start text-black px-2">
-          岗位信息
-        </div>
-        <div className="grid grid-cols-3 gap-4 mx-20 py-8">
-          {jobInfo.map((v) => (
-            <Form.Item
-              name={['jobInfo', v.name]}
-              label={v.label}
-              rules={[{ required: v.required }]}
-            >
-              {getControl(v)}
-            </Form.Item>
-          ))}
-        </div>
-      </div>
-      <div>
-        <div className="bg-blue-300 mx-20 text-start text-black px-2">
-          人员信息
-        </div>
-        <div className="grid grid-cols-3 gap-4 mx-20 py-8">
-          {userInfo.map((v) => (
-            <Form.Item
-              name={['userInfo', v.name]}
-              label={v.label}
-              rules={[{ required: v.required }]}
-            >
-              {getControl(v)}
-            </Form.Item>
-          ))}
-        </div>
-      </div>
-      <div>
-        <div className="bg-blue-300 mx-20 text-start text-black px-2">
-          入职信息
-        </div>
-        <div className="grid grid-cols-3 mx-20 py-8">
-          {workInfo.map((v) => (
-            <Form.Item
-              name={['userInfo', v.name]}
-              label={v.label}
-              rules={[{ required: v.required }]}
-            >
-              {getControl(v)}
-            </Form.Item>
-          ))}
-        </div>
-      </div>
+      <h1 className="text-lg font-bold">个人信息</h1>
+      <Form.Item
+        name={['user', 'name']}
+        label="姓名"
+        rules={[{ required: true }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item name={['user', 'age']} label="年龄">
+        <Input type="number" />
+      </Form.Item>
+      <Form.Item name={['user', 'gender']} label="性别">
+        <Select>
+          <Option value="boy">男</Option>
+          <Option value="girl">女</Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={['user', 'email']}
+        label="邮箱"
+        rules={[{ type: 'email' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item name={['user', 'website']} label="网站">
+        <Input />
+      </Form.Item>
+      <Form.Item name={['user', 'introduction']} label="介绍">
+        <Input.TextArea />
+      </Form.Item>
     </Form>
   );
 };
