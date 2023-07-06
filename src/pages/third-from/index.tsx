@@ -192,13 +192,18 @@ const ThirdForm = () => {
     console.log(values);
   };
 
-  function getControl(v: any) {
+  function getControl(v: any, disabled?: boolean) {
     switch (v?.type) {
       case 'number':
         return <Input type="number" />;
       case 'select':
         return (
-          <Select showSearch placeholder="请选择" className="text-left">
+          <Select
+            disabled={disabled}
+            showSearch
+            placeholder="请选择"
+            className="text-left"
+          >
             {v?.options?.map((i: any) => (
               <Option key={i.value} value={i.value}>
                 {i.name}
@@ -209,6 +214,7 @@ const ThirdForm = () => {
       case 'DateTime':
         return (
           <DateTime
+            disabled={disabled}
             style={{
               width: '100%'
             }}
@@ -218,13 +224,14 @@ const ThirdForm = () => {
       case 'RangePicker':
         return (
           <RangeDate
+            disabled={disabled}
             style={{
               width: '100%'
             }}
           />
         );
       default:
-        return <Input />;
+        return <Input disabled={disabled} />;
     }
   }
 
@@ -251,7 +258,7 @@ const ThirdForm = () => {
               label={v.label}
               rules={[{ required: v.required }]}
             >
-              {getControl(v)}
+              {getControl(v, !isStart)}
             </Form.Item>
           ))}
         </div>
@@ -285,7 +292,7 @@ const ThirdForm = () => {
               label={v.label}
               rules={[{ required: v.required }]}
             >
-              {getControl(v)}
+              {getControl(v, !isStart)}
             </Form.Item>
           ))}
         </div>

@@ -235,6 +235,7 @@ export const workInfo = [
   {
     label: '合同截至日期',
     name: 'endTime',
-    type: 'DateTime'
+    type: 'DateTime',
+    required: true,
   }
 ];
