@@ -292,7 +292,7 @@ const ThirdForm = () => {
               label={v.label}
               rules={[{ required: v.required }]}
             >
-              {getControl(v, !isStart)}
+              {getControl(v)}
             </Form.Item>
           ))}
         </div>
