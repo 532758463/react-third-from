@@ -51,7 +51,7 @@ const ThirdForm = () => {
   const searchUrl = new URLSearchParams(location.search);
   const dataId = searchUrl.get('formRecordId') || '';
   const formRecordId = getValidUrlParamValue(dataId) || new Date().getTime();
-  const isStart = true||searchUrl.get('isStart');
+  const isStart = searchUrl.get('isStart');
 
   function svaeFormData() {
     const values = form.getFieldsValue();
