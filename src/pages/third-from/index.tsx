@@ -4,6 +4,7 @@ import { useForm } from 'antd/lib/form/Form';
 import { jobInfo, getUserInfo, PERMISSION_ENUM, workInfo } from './datas';
 import { getValidUrlParamValue } from '@src/utils/getValidUrlParamValue';
 import dayjs from 'dayjs';
+import Selector from '@src/components/Selector';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -50,7 +51,7 @@ const ThirdForm = () => {
   const searchUrl = new URLSearchParams(location.search);
   const dataId = searchUrl.get('formRecordId') || '';
   const formRecordId = getValidUrlParamValue(dataId) || new Date().getTime();
-  const isStart = searchUrl.get('isStart');
+  const isStart = true||searchUrl.get('isStart');
 
   function svaeFormData() {
     const values = form.getFieldsValue();
@@ -230,6 +231,8 @@ const ThirdForm = () => {
             }}
           />
         );
+      case 'Selector':
+        return <Selector/>
       default:
         return <Input disabled={disabled} />;
     }

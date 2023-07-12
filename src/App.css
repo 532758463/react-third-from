@@ -36,6 +36,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -43,4 +44,8 @@
 
 button {
   font-size: calc(10px + 2vmin);
+}
+
+button.ant-btn-primary {
+  background-color: #1677ff;
 }

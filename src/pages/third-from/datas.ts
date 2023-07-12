@@ -131,11 +131,13 @@ export const jobInfo = [
   {
     label: '体系HR',
     name: 'hr',
+    type: 'Selector',
     required: false
   },
   {
     label: '指导人',
     name: 'teacher',
+    type: 'Selector',
     required: true
   }
 ];
