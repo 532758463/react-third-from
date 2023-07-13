@@ -260,7 +260,7 @@ const ThirdForm = () => {
           {jobInfo.map((v) => (
             <Form.Item
               key={v.name}
-              name={['jobInfo', v.name]}
+              name={v.name}
               label={v.label}
               rules={[{ required: v.required }]}
             >
@@ -294,7 +294,7 @@ const ThirdForm = () => {
           {workInfo.map((v) => (
             <Form.Item
               key={v.name}
-              name={['userInfo', v.name]}
+              name={v.name}
               label={v.label}
               rules={[{ required: v.required }]}
             >
