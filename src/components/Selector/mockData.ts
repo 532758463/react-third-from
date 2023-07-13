@@ -1,26 +1,26 @@
 export const pers = [
   {
-    name: '邓文卓',
+    title: '邓文卓',
     code: 'MB202304200002'
   },
   {
-    name: '毛中阳',
+    title: '毛中阳',
     code: 'MB202305170001'
   },
   {
-    name: '黄林',
+    title: '黄林',
     code: 'MB202304170002'
   },
   {
-    name: '吴建林',
+    title: '吴建林',
     code: 'MB202304170001'
   },
   {
-    name: '苗鹏',
+    title: '苗鹏',
     code: 'MB202304270004'
   },
   {
-    name: '王刚',
+    title: '王刚',
     code: 'MB202304270005'
   },
   {
