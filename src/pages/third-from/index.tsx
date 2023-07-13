@@ -263,7 +263,7 @@ const ThirdForm = () => {
               name={['jobInfo', v.name]}
               label={v.label}
               rules={[{ required: v.required }]}
-            >)
+            >
               {getControl(v)}
             </Form.Item>
           ))}
