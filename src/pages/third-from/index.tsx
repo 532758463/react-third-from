@@ -131,6 +131,9 @@ const ThirdForm = () => {
                   backDealType: 0,
                   // 指定节点时必传
                   targetNodeId: 'xxxx'
+                },
+                actionInfo: {
+                  preventClose: true
                 }
               },
               e.data.url //父页面地址
@@ -232,7 +235,7 @@ const ThirdForm = () => {
           />
         );
       case 'Selector':
-        return <Selector/>
+        return <Selector />;
       default:
         return <Input disabled={disabled} />;
     }
@@ -260,8 +263,8 @@ const ThirdForm = () => {
               name={['jobInfo', v.name]}
               label={v.label}
               rules={[{ required: v.required }]}
-            >
-              {getControl(v, !isStart)}
+            >)
+              {getControl(v)}
             </Form.Item>
           ))}
         </div>
