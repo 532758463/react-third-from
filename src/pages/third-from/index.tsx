@@ -277,7 +277,7 @@ const ThirdForm = () => {
           {getUserInfo(!isStart).map((v) => (
             <Form.Item
               key={v.name}
-              name={['userInfo', v.name]}
+              name={v.name}
               label={v.label}
               rules={[{ required: v.required }]}
             >
