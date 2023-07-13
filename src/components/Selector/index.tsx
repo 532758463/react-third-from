@@ -25,7 +25,8 @@ const Selector: React.FC<ISelectorProps> = ({ value, onChange }) => {
 
   const handleOk = () => {
     setIsModalOpen(false);
-    onChange?.(targetKeys);
+    const values = targetKeys.join(',');
+    onChange?.(values);
   };
 
   const handleCancel = () => {
@@ -59,8 +60,9 @@ const Selector: React.FC<ISelectorProps> = ({ value, onChange }) => {
         //   ?.filter((v) => selectPeoples?.includes(v.code))
         //   .map((v) => v.title);
         // return p?.join('、');
+        const newVlue = value?.split(',')
         return mockData
-          ?.filter((v) => value?.includes(v.code))
+          ?.filter((v) => newVlue?.includes(v.code))
           ?.map((p) => p.title)
           ?.join('、');
       } catch (error) {
